@@ -14,3 +14,6 @@ print(myString[::2])
 # 그렇기에 사용하는 방법
 team = myString[1:]
 print('K' + team)
+myString = myString + ' will win this season ! \n'
+myString = myString * 10
+print(myString)
