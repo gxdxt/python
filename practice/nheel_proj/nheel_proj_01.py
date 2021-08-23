@@ -20,22 +20,23 @@ def nheelProj(headers, id, url, price):
     if response.status_code == 200:
         html = response.text
         soup = BeautifulSoup(html, 'html.parser')
-        title = soup.select_one(
-            'div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-sale-price > span.total-price > strong')
 
+        title = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-sale-price > span.total-price > strong')
         coupang_price = title.get_text().split('원')[0]
+        if coupang_price is None:
+            title2 = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-coupon-price > span.total-price > strong')
+            coupang_price = title2.get_text.split('원')[0]
         coupang_price = int(coupang_price.replace(',', ""))
         # print(coupang_price)
         original_price = int(price)
         # print(original_price)
         if (coupang_price > original_price) :
-            print
             flag = False
         else :
             flag = True
 
         if flag:
-            return print(id + '는 문제 없습니다.')
+            return print(id)
         else:
             return print('id: ('+ id + ')는 쿠팡가가 너무 높습니다.')
 
@@ -48,11 +49,8 @@ def nheelProj(headers, id, url, price):
 
 if __name__ == "__main__":
     # 띄어쓰기를 쉼표로 대체해서 list로 받아와야해
-        # 띄어쓰기르 쉼표로 대체하는 함수
-    #test = input('제품명 URL 정가 순으로 입력해주세요.').replace(' ', ',')
-    #print(test)
+
     #띄어쓰기 단위로 list 안에 넣고, 줄바꿈 단위로 다른 list 생성하고
-    # 예를 들어, a b c   \n d e f 면 [[a, b, c], [d, e, f] ...] 이런 식으로 만들 계획
     # 리스트 완성이 되면 len(list)로 for문 돌려야해
     product_list = []
     product = []
