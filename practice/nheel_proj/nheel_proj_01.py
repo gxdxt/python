@@ -49,15 +49,27 @@ nheelProj({ "User-Agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Appl
 
 if __name__ == "__main__":
     # 띄어쓰기를 쉼표로 대체해서 list로 받아와야해
-
+        # 띄어쓰기르 쉼표로 대체하는 함수
+    #test = input('제품명 URL 정가 순으로 입력해주세요.').replace(' ', ',')
+    #print(test)
+    #띄어쓰기 단위로 list 안에 넣고, 줄바꿈 단위로 다른 list 생성하고
+    # 예를 들어, a b c   \n d e f 면 [[a, b, c], [d, e, f] ...] 이런 식으로 만들 계획
     # 리스트 완성이 되면 len(list)로 for문 돌려야해
-
+    product_list = []
+    product = []
+    while True:
+        product = [input().split('\t')]
+        print(product)
+        if product == [['exit']]:
+            break
+        else:
+            product_list.append(product)
     # 한땀 한땀 함수에 넣어서
-
+    
     # 결과값 출력하면 되겠다.
-    a = input('headers: ')
+    #a = input('headers: ')
 
 
-    url = input('url: ')
-    price = input('정가: ')
-    nheelProj(defineHeaders(a), url, price)
+    #url = input('url: ')
+    #price = input('정가: ')
+    #nheelProj(defineHeaders(a), url, price)
