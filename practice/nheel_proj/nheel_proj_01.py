@@ -5,8 +5,7 @@ def defineHeaders(a):
     headers = {"User-Agent": a}
     return headers
 
-def nheelProj(headers, url, price):
-    print("크롤링 시작")
+def nheelProj(headers, id, url, price):
     try:
         response = requests.get(url, headers=headers)
     except requests.exceptions.Timeout as errd:
@@ -36,14 +35,14 @@ def nheelProj(headers, url, price):
             flag = True
 
         if flag:
-            return print('문제 없습니다.')
+            return print(id + '는 문제 없습니다.')
         else:
-            return print('쿠팡가가 너무 높습니다.')
+            return print('id: ('+ id + ')는 쿠팡가가 너무 높습니다.')
 
     else:
         print(response.status_code)
 
-nheelProj({ "User-Agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36" }, 'https://www.coupang.com/vp/products/86224761?itemId=271802745&vendorItemId=3657804369&sourceType=srp_product_ads&clickEventId=23216e90-c4e7-4b5f-9cac-fcf74ce013ab&korePlacement=15&koreSubPlacement=1&q=%EC%83%A4%EB%B0%94%EC%8A%A4&itemsCount=36&searchId=ccd540a4610044b3b49704aebcfbf4f0&rank=0&isAddedCart=', 1000)
+#nheelProj({ "User-Agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36" }, 'https://www.coupang.com/vp/products/86224761?itemId=271802745&vendorItemId=3657804369&sourceType=srp_product_ads&clickEventId=23216e90-c4e7-4b5f-9cac-fcf74ce013ab&korePlacement=15&koreSubPlacement=1&q=%EC%83%A4%EB%B0%94%EC%8A%A4&itemsCount=36&searchId=ccd540a4610044b3b49704aebcfbf4f0&rank=0&isAddedCart=', 1000)
 # { "User-Agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36" }
 # 'https://www.coupang.com/vp/products/86224761?itemId=271802745&vendorItemId=3657804369&sourceType=srp_product_ads&clickEventId=23216e90-c4e7-4b5f-9cac-fcf74ce013ab&korePlacement=15&koreSubPlacement=1&q=%EC%83%A4%EB%B0%94%EC%8A%A4&itemsCount=36&searchId=ccd540a4610044b3b49704aebcfbf4f0&rank=0&isAddedCart='
 
@@ -58,14 +57,17 @@ if __name__ == "__main__":
     product_list = []
     product = []
     while True:
-        product = [input().split('\t')]
-        print(product)
-        if product == [['exit']]:
+        product = input().split('\t')
+        if product == ['exit']:
             break
         else:
             product_list.append(product)
     # 한땀 한땀 함수에 넣어서
-    
+    a = input('Headers를 입력해주세요 : ')
+
+    for i in range(0, len(product_list)):
+        nheelProj(defineHeaders(a), product_list[i][0], product_list[i][1], int(product_list[i][2].replace(',', '')))
+
     # 결과값 출력하면 되겠다.
     #a = input('headers: ')
 
