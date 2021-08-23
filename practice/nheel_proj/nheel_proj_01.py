@@ -48,10 +48,16 @@ nheelProj({ "User-Agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Appl
 # 'https://www.coupang.com/vp/products/86224761?itemId=271802745&vendorItemId=3657804369&sourceType=srp_product_ads&clickEventId=23216e90-c4e7-4b5f-9cac-fcf74ce013ab&korePlacement=15&koreSubPlacement=1&q=%EC%83%A4%EB%B0%94%EC%8A%A4&itemsCount=36&searchId=ccd540a4610044b3b49704aebcfbf4f0&rank=0&isAddedCart='
 
 if __name__ == "__main__":
-    a = input('headers를 입력해주세요.')
-    print(a)
-    print(defineHeaders(a))
+    # 띄어쓰기를 쉼표로 대체해서 list로 받아와야해
 
-    url = input('url을 입력해주세요.')
-    price = input('정가를 입력해주세요.')
+    # 리스트 완성이 되면 len(list)로 for문 돌려야해
+
+    # 한땀 한땀 함수에 넣어서
+
+    # 결과값 출력하면 되겠다.
+    a = input('headers: ')
+
+
+    url = input('url: ')
+    price = input('정가: ')
     nheelProj(defineHeaders(a), url, price)
