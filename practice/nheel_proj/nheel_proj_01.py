@@ -20,13 +20,17 @@ def nheelProj(headers, id, url, price):
     if response.status_code == 200:
         html = response.text
         soup = BeautifulSoup(html, 'html.parser')
+        try:
+            title = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-sale-price > span.total-price > strong')
+            coupang_price = title.get_text().split('원')[0]
+            if title is None:
+                print('title is None')
+                title2 = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-coupon-price > span.total-price > strong')
+                coupang_price = title2.get_text().split('원')[0]
+        except AttributeError as e:
+            print(e)
 
-        title = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-sale-price > span.total-price > strong')
-        coupang_price = title.get_text().split('원')[0]
-        if coupang_price is None:
-            title2 = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-coupon-price > span.total-price > strong')
-            coupang_price = title2.get_text.split('원')[0]
-        coupang_price = int(coupang_price.replace(',', ""))
+        coupang_price = int(coupang_price.replace(',', ''))
         # print(coupang_price)
         original_price = int(price)
         # print(original_price)
@@ -46,7 +50,7 @@ def nheelProj(headers, id, url, price):
 #nheelProj({ "User-Agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36" }, 'https://www.coupang.com/vp/products/86224761?itemId=271802745&vendorItemId=3657804369&sourceType=srp_product_ads&clickEventId=23216e90-c4e7-4b5f-9cac-fcf74ce013ab&korePlacement=15&koreSubPlacement=1&q=%EC%83%A4%EB%B0%94%EC%8A%A4&itemsCount=36&searchId=ccd540a4610044b3b49704aebcfbf4f0&rank=0&isAddedCart=', 1000)
 # { "User-Agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36" }
 # 'https://www.coupang.com/vp/products/86224761?itemId=271802745&vendorItemId=3657804369&sourceType=srp_product_ads&clickEventId=23216e90-c4e7-4b5f-9cac-fcf74ce013ab&korePlacement=15&koreSubPlacement=1&q=%EC%83%A4%EB%B0%94%EC%8A%A4&itemsCount=36&searchId=ccd540a4610044b3b49704aebcfbf4f0&rank=0&isAddedCart='
-
+# Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36
 if __name__ == "__main__":
     # 띄어쓰기를 쉼표로 대체해서 list로 받아와야해
 
