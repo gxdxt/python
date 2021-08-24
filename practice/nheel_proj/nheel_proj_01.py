@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
+coupang_price = '1,000'
+
 def defineHeaders(a):
     headers = {"User-Agent": a}
     return headers
@@ -22,11 +24,17 @@ def nheelProj(headers, id, url, price):
         soup = BeautifulSoup(html, 'html.parser')
         try:
             title = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-sale-price > span.total-price > strong')
+            print(title)
             coupang_price = title.get_text().split('원')[0]
+            print('first' + coupang_price)
             if title is None:
                 print('title is None')
                 title2 = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-coupon-price > span.total-price > strong')
                 coupang_price = title2.get_text().split('원')[0]
+                print('second' + coupang_price)
+            if coupang_price is None:
+                coupang_price = '1,000'
+                print('third' + coupang_price)
         except AttributeError as e:
             print(e)
 
