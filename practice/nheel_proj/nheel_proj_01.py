@@ -1,11 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 
-coupang_price = '1,000'
-
 def defineHeaders(a):
     headers = {"User-Agent": a}
     return headers
+
+
 
 def nheelProj(headers, id, url, price):
     try:
@@ -24,17 +24,12 @@ def nheelProj(headers, id, url, price):
         soup = BeautifulSoup(html, 'html.parser')
         try:
             title = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-sale-price > span.total-price > strong')
-            print(title)
-            coupang_price = title.get_text().split('원')[0]
-            print('first' + coupang_price)
-            if title is None:
-                print('title is None')
+            # 이 부분 코드 순서가 잘못됐었다.
+            if title == None:
                 title2 = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-coupon-price > span.total-price > strong')
                 coupang_price = title2.get_text().split('원')[0]
-                print('second' + coupang_price)
-            if coupang_price is None:
-                coupang_price = '1,000'
-                print('third' + coupang_price)
+            else:
+                coupang_price = title.get_text().split('원')[0]
         except AttributeError as e:
             print(e)
 
@@ -50,15 +45,11 @@ def nheelProj(headers, id, url, price):
         if flag:
             return print(id)
         else:
-            return print('id: ('+ id + ')는 쿠팡가가 너무 높습니다.')
+            return print('id: ('+ id + ')는 기존 쿠팡가는 ('+ str(original_price) +') 지만, 현재 쿠팡가는 ('+ str(coupang_price) +')로 확인이 필요한 상품입니다.')
 
     else:
         print(response.status_code)
 
-#nheelProj({ "User-Agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36" }, 'https://www.coupang.com/vp/products/86224761?itemId=271802745&vendorItemId=3657804369&sourceType=srp_product_ads&clickEventId=23216e90-c4e7-4b5f-9cac-fcf74ce013ab&korePlacement=15&koreSubPlacement=1&q=%EC%83%A4%EB%B0%94%EC%8A%A4&itemsCount=36&searchId=ccd540a4610044b3b49704aebcfbf4f0&rank=0&isAddedCart=', 1000)
-# { "User-Agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36" }
-# 'https://www.coupang.com/vp/products/86224761?itemId=271802745&vendorItemId=3657804369&sourceType=srp_product_ads&clickEventId=23216e90-c4e7-4b5f-9cac-fcf74ce013ab&korePlacement=15&koreSubPlacement=1&q=%EC%83%A4%EB%B0%94%EC%8A%A4&itemsCount=36&searchId=ccd540a4610044b3b49704aebcfbf4f0&rank=0&isAddedCart='
-# Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36
 if __name__ == "__main__":
     # 띄어쓰기를 쉼표로 대체해서 list로 받아와야해
 
