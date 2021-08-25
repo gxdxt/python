@@ -24,7 +24,6 @@ def nheelProj(headers, id, url, price):
         soup = BeautifulSoup(html, 'html.parser')
         try:
             title = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-sale-price > span.total-price > strong')
-            # 이 부분 코드 순서가 잘못됐었다.
             if title == None:
                 title2 = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-coupon-price > span.total-price > strong')
                 coupang_price = title2.get_text().split('원')[0]
@@ -34,9 +33,7 @@ def nheelProj(headers, id, url, price):
             print(e)
 
         coupang_price = int(coupang_price.replace(',', ''))
-        # print(coupang_price)
         original_price = int(price)
-        # print(original_price)
         if (coupang_price > original_price) :
             flag = False
         else :
@@ -51,10 +48,7 @@ def nheelProj(headers, id, url, price):
         print(response.status_code)
 
 if __name__ == "__main__":
-    # 띄어쓰기를 쉼표로 대체해서 list로 받아와야해
 
-    #띄어쓰기 단위로 list 안에 넣고, 줄바꿈 단위로 다른 list 생성하고
-    # 리스트 완성이 되면 len(list)로 for문 돌려야해
     product_list = []
     product = []
     while True:
@@ -63,16 +57,10 @@ if __name__ == "__main__":
             break
         else:
             product_list.append(product)
-    # 한땀 한땀 함수에 넣어서
+
     a = input('Headers를 입력해주세요 : ')
 
     for i in range(0, len(product_list)):
         nheelProj(defineHeaders(a), product_list[i][0], product_list[i][1], int(product_list[i][2].replace(',', '')))
-
-    # 결과값 출력하면 되겠다.
-    #a = input('headers: ')
-
-
-    #url = input('url: ')
-    #price = input('정가: ')
-    #nheelProj(defineHeaders(a), url, price)
+    print("nheel proj V0 by stuoy")
+    print("알지에게 도움이 되었길 바라며!")
