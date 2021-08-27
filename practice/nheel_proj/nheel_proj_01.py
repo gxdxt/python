@@ -34,15 +34,15 @@ def nheelProj(headers, id, url, price):
 
         coupang_price = int(coupang_price.replace(',', ''))
         original_price = int(price)
-        if (coupang_price > original_price) :
+        if (coupang_price > original_price + 1000) :
             flag = False
-        else :
+        if (coupang_price < original_price - 1000) :
             flag = True
 
         if flag:
-            return print(id)
+            return print('id: ('+ id + ')는 현재 쿠팡가는 ('+ str(coupang_price) +')로 기존 쿠팡가 ('+ str(original_price) + ')보다 1,000원 이상 낮습니다.')
         else:
-            return print('id: ('+ id + ')는 기존 쿠팡가는 ('+ str(original_price) +') 지만, 현재 쿠팡가는 ('+ str(coupang_price) +')로 확인이 필요한 상품입니다.')
+            return print('id: ('+ id + ')는 현재 쿠팡가는 ('+ str(coupang_price) +')로 기존 쿠팡가 ('+ str(original_price) + ')보다 1,000원 이상 높습니다.')
 
     else:
         print(response.status_code)
