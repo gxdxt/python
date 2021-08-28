@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+from tkinter import *
+from tkinter import messagebox
 
 def defineHeaders(a):
     headers = {"User-Agent": a}
@@ -30,6 +32,7 @@ def nheelProj(headers, id, url, price):
             else:
                 coupang_price = title.get_text().split('원')[0]
         except AttributeError as e:
+            messagebox.showinfo("오류", e)
             print(e)
 
         coupang_price = int(coupang_price.replace(',', ''))
