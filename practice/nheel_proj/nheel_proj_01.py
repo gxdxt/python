@@ -20,36 +20,37 @@ def nheelProj(headers, id, url, price):
         print("HTTP error : ", errd)
     except requests.exceptions.RequestException as errd:
         print("Exception : ", errd)
-        if response.status_code == 200:
-            html = response.text
-            soup = BeautifulSoup(html, 'html.parser')
-            try:
-                title = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-sale-price > span.total-price > strong')
-                if title == None:
-                    title2 = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-coupon-price > span.total-price > strong')
-                    coupang_price = title2.get_text().split('원')[0]
-                else:
-                    coupang_price = title.get_text().split('원')[0]
-            except AttributeError as e:
-                messagebox.showinfo("오류", e)
-                print(e)
 
-            coupang_price = int(coupang_price.replace(',', ''))
-            original_price = int(price)
-            if (coupang_price > original_price + 1000) :
-                flag = 1
-            elif (coupang_price < original_price - 1000) :
-                flag = -1
-            else :
-                flag = 0
+    if response.status_code == 200:
+        html = response.text
+        soup = BeautifulSoup(html, 'html.parser')
+        try:
+            title = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-sale-price > span.total-price > strong')
+            if title == None:
+                title2 = soup.select_one('div.prod-price-container > div.prod-price > div.prod-price-onetime > div.prod-coupon-price > span.total-price > strong')
+                coupang_price = title2.get_text().split('원')[0]
+            else:
+                coupang_price = title.get_text().split('원')[0]
+        except AttributeError as e:
+            messagebox.showinfo("오류", e)
+            print(e)
 
-        if(flag == -1) :
+        coupang_price = int(coupang_price.replace(',', ''))
+        original_price = int(price)
+        flag = 0
+        if (coupang_price > original_price + 1000) :
+            flag = 1
+        if (coupang_price < original_price - 1000) :
+            flag = -1
+
+
+        if (flag == -1) :
             return print('id: ('+ id + ')는 현재 쿠팡가는 ('+ str(coupang_price) +')로 기존 쿠팡가 ('+ str(original_price) + ')보다 1,000원 이상 낮습니다.')
         elif (flag == 1):
             return print('id: ('+ id + ')는 현재 쿠팡가는 ('+ str(coupang_price) +')로 기존 쿠팡가 ('+ str(original_price) + ')보다 1,000원 이상 높습니다.')
+
         else :
             return print('id: ('+ id + ')는 이상 없습니다.')
-
     else:
         print(response.status_code)
 
