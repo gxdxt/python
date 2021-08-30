@@ -101,13 +101,27 @@ if __name__ == "__main__":
 
     # 입력된 값 가져오기
     def getTextInput():
-        result = excelInput.get(1.0, "tkinter.END"+"-1c")
-        product = result.split('\t')
-        print(product)
-        product_list.append(product)
-        print(product_list)
+        result = excelInput.get(1.0, "end")
+        beforProduct = result.split('\r\n')
+        print(beforProduct)
+        # for i in beforProduct:
+        #     if (i!=''):
+        #         product.insert(tkinter.END,i)
+        for i in beforProduct:
+            if(i!=''):
+                product = i.split('\t')
+                product_list.append(product)
+        for i in range(0, len(product_list)):
+            nheelProj('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36', product_list[i][0], product_list[i][1],
+                      int(product_list[i][2].replace(',', '')))
+        print("nheel proj V0 by stuoy")
+        print("알지에게 도움이 되었길 바라며!")
+        # product = beforProduct.split('\t')
+        # print(product)
+        # product_list.append(product)
+        # print(product_list)
 
-        print(result)
+        #print(result)
 
 
     #위젯 이름을 사용하여 label 사용 가능
