@@ -1,3 +1,5 @@
+import tkinter
+
 import requests
 from bs4 import BeautifulSoup
 from tkinter import *
@@ -83,6 +85,19 @@ def nheelProj(headers, id, url, price):
 if __name__ == "__main__":
     getUserAgent('https://www.whatsmyua.info/')
     print(userAgent)
+
+    # 가장 상위 레벨의 윈도우 창 생성
+    window = tkinter.Tk()
+
+    window.title("nheel_proj_V0")
+    window.geometry("640x400+100+100")
+    window.resizable(False, False)
+
+    # 윈도우가 종료될 때까지 창 실행
+    window.mainloop()
+
+
+
 
     a = input('Headers를 입력해주세요 : ')
     product_list = []
