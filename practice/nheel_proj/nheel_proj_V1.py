@@ -85,6 +85,8 @@ def nheelProj(headers, id, url, price):
 if __name__ == "__main__":
     getUserAgent('https://www.whatsmyua.info/')
     print(userAgent)
+    product_list = []
+    product = []
 
     # 가장 상위 레벨의 윈도우 창 생성
     window = tkinter.Tk()
@@ -96,9 +98,16 @@ if __name__ == "__main__":
     # (상하, 좌우)를 의미한다.
     window.resizable(False, False)
 
+
     # 입력된 값 가져오기
     def getTextInput():
-        result = excelInput.get(1.0, "end")
+        result = excelInput.get(1.0, "tkinter.END"+"-1c")
+        product = result.split('\t')
+        print(product)
+        product_list.append(product)
+        print(product_list)
+
+        print(result)
 
 
     #위젯 이름을 사용하여 label 사용 가능
@@ -119,7 +128,6 @@ if __name__ == "__main__":
 
     # 윈도우가 종료될 때까지 창 실행
     window.mainloop()
-
 
 
 
