@@ -3,6 +3,32 @@ from bs4 import BeautifulSoup
 from tkinter import *
 from tkinter import messagebox
 
+userAgent = ""
+def getUserAgent(url):
+    try:
+        response = requests.get(url)
+    except requests.exceptions.Timeout as errd:
+        print("Timeout error : ", errd)
+    except requests.exceptions.ConnectionError as errd:
+        print("Connection error : ", errd)
+    except requests.exceptions.HTTPError as errd:
+        print("HTTP error : ", errd)
+    except requests.exceptions.RequestException as errd:
+        print("Exception : ", errd)
+
+    if response.status_code == 200:
+        html = response.text
+        soup = BeautifulSoup(html, 'html.parser')
+        print(soup)
+        print('----------')
+        try:
+            userAgent = soup.select_one('#custom-ua-string').value
+            print(userAgent)
+        except AttributeError as e:
+            messagebox.showinfo("오류", e)
+            print(e)
+    return userAgent
+
 def defineHeaders(a):
     headers = {"User-Agent": a}
     return headers
@@ -11,7 +37,7 @@ def defineHeaders(a):
 
 def nheelProj(headers, id, url, price):
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=userAgent)
     except requests.exceptions.Timeout as errd:
         print("Timeout error : ", errd)
     except requests.exceptions.ConnectionError as errd:
@@ -55,6 +81,8 @@ def nheelProj(headers, id, url, price):
         print(response.status_code)
 
 if __name__ == "__main__":
+    getUserAgent('https://www.whatsmyua.info/')
+    print(userAgent)
 
     a = input('Headers를 입력해주세요 : ')
     product_list = []
