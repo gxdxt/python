@@ -56,6 +56,7 @@ def nheelProj(headers, id, url, price):
 
 if __name__ == "__main__":
 
+    a = input('Headers를 입력해주세요 : ')
     product_list = []
     product = []
     while True:
@@ -65,7 +66,7 @@ if __name__ == "__main__":
         else:
             product_list.append(product)
 
-    a = input('Headers를 입력해주세요 : ')
+
 
     for i in range(0, len(product_list)):
         nheelProj(defineHeaders(a), product_list[i][0], product_list[i][1], int(product_list[i][2].replace(',', '')))
