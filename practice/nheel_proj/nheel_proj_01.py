@@ -91,7 +91,31 @@ if __name__ == "__main__":
 
     window.title("nheel_proj_V0")
     window.geometry("640x400+100+100")
+
+    #resize 안에 param에 0 = false , 1 = true로 지정 가능
+    # (상하, 좌우)를 의미한다.
     window.resizable(False, False)
+
+    # 입력된 값 가져오기
+    def getTextInput():
+        result = excelInput.get(1.0, "end")
+
+
+    #위젯 이름을 사용하여 label 사용 가능
+    label = tkinter.Label(window, text = "알지의 쿠팡 크롤링")
+    label.pack()
+    #label 끝
+
+    #Input 시작
+    excelInput = tkinter.Text(window, height=10)
+    excelInput.pack()
+    #Input 끝
+
+    #Button 시작
+    btnClick = tkinter.Button(window, height=1, width=10, text='click', command=getTextInput)
+    btnClick.pack()
+    #Button 끝
+    
 
     # 윈도우가 종료될 때까지 창 실행
     window.mainloop()
