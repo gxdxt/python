@@ -5,41 +5,16 @@ from bs4 import BeautifulSoup
 from tkinter import *
 from tkinter import messagebox
 
-userAgent = ""
-def getUserAgent(url):
-    try:
-        response = requests.get(url)
-    except requests.exceptions.Timeout as errd:
-        print("Timeout error : ", errd)
-    except requests.exceptions.ConnectionError as errd:
-        print("Connection error : ", errd)
-    except requests.exceptions.HTTPError as errd:
-        print("HTTP error : ", errd)
-    except requests.exceptions.RequestException as errd:
-        print("Exception : ", errd)
 
-    if response.status_code == 200:
-        html = response.text
-        soup = BeautifulSoup(html, 'html.parser')
-        print(soup)
-        print('----------')
-        try:
-            userAgent = soup.select_one('#custom-ua-string').value
-            print(userAgent)
-        except AttributeError as e:
-            messagebox.showinfo("오류", e)
-            print(e)
-    return userAgent
-
-def defineHeaders(a):
-    headers = {"User-Agent": a}
+def defineHeaders():
+    headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"}
     return headers
 
 
 
 def nheelProj(headers, id, url, price):
     try:
-        response = requests.get(url, headers=userAgent)
+        response = requests.get(url, headers=defineHeaders())
     except requests.exceptions.Timeout as errd:
         print("Timeout error : ", errd)
     except requests.exceptions.ConnectionError as errd:
@@ -83,8 +58,6 @@ def nheelProj(headers, id, url, price):
         print(response.status_code)
 
 if __name__ == "__main__":
-    getUserAgent('https://www.whatsmyua.info/')
-    print(userAgent)
     product_list = []
     product = []
 
@@ -101,7 +74,7 @@ if __name__ == "__main__":
 
     # 입력된 값 가져오기
     def getTextInput():
-        result = excelInput.get(1.0, "end")
+        result = excelInput.get(1.0, "end-1c")
         beforProduct = result.split('\r\n')
         print(beforProduct)
         # for i in beforProduct:
@@ -111,9 +84,11 @@ if __name__ == "__main__":
             if(i!=''):
                 product = i.split('\t')
                 product_list.append(product)
+                print(product)
         for i in range(0, len(product_list)):
             nheelProj('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36', product_list[i][0], product_list[i][1],
                       int(product_list[i][2].replace(',', '')))
+            print('----------')
         print("nheel proj V0 by stuoy")
         print("알지에게 도움이 되었길 바라며!")
         # product = beforProduct.split('\t')
@@ -138,7 +113,7 @@ if __name__ == "__main__":
     btnClick = tkinter.Button(window, height=1, width=10, text='click', command=getTextInput)
     btnClick.pack()
     #Button 끝
-    
+
 
     # 윈도우가 종료될 때까지 창 실행
     window.mainloop()
