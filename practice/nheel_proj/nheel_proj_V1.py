@@ -48,12 +48,12 @@ def nheelProj(headers, id, url, price):
 
 
         if (flag == -1) :
-            return print('id: ('+ id + ')는 현재 쿠팡가는 ('+ str(coupang_price) +')로 기존 쿠팡가 ('+ str(original_price) + ')보다 1,000원 이상 낮습니다.')
+            return 'id: ('+ id + ')는 현재 쿠팡가는 ('+ str(coupang_price) +')로 기존 쿠팡가 ('+ str(original_price) + ')보다 1,000원 이상 낮습니다. \n'
         elif (flag == 1):
-            return print('id: ('+ id + ')는 현재 쿠팡가는 ('+ str(coupang_price) +')로 기존 쿠팡가 ('+ str(original_price) + ')보다 1,000원 이상 높습니다.')
+            return 'id: ('+ id + ')는 현재 쿠팡가는 ('+ str(coupang_price) +')로 기존 쿠팡가 ('+ str(original_price) + ')보다 1,000원 이상 높습니다. \n'
 
         else :
-            return print('id: ('+ id + ')는 이상 없습니다.')
+            return 'id: ('+ id + ')는 이상 없습니다. \n'
     else:
         print(response.status_code)
 
@@ -85,12 +85,14 @@ if __name__ == "__main__":
                 product = i.split('\t')
                 product_list.append(product)
                 print(product)
+        userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36'
+        finalResult = ""
         for i in range(0, len(product_list)):
-            nheelProj('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36', product_list[i][0], product_list[i][1],
-                      int(product_list[i][2].replace(',', '')))
-            print('----------')
+            finalResult = finalResult + nheelProj(userAgent, product_list[i][0], product_list[i][1],int(product_list[i][2].replace(',', ''))) + '\n'
+
         print("nheel proj V0 by stuoy")
         print("알지에게 도움이 되었길 바라며!")
+        resultText.configure(text=finalResult)
         # product = beforProduct.split('\t')
         # print(product)
         # product_list.append(product)
@@ -109,10 +111,16 @@ if __name__ == "__main__":
     excelInput.pack()
     #Input 끝
 
+
     #Button 시작
     btnClick = tkinter.Button(window, height=1, width=10, text='click', command=getTextInput)
     btnClick.pack()
     #Button 끝
+
+    #result 시작
+    resultText = tkinter.Label(window, height=10)
+    resultText.pack()
+    #result 끝
 
 
     # 윈도우가 종료될 때까지 창 실행
