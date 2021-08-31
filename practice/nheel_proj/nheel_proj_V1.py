@@ -65,7 +65,7 @@ if __name__ == "__main__":
     window = tkinter.Tk()
 
     window.title("nheel_proj_V0")
-    window.geometry("640x400+100+100")
+    window.geometry("640x600+100+100")
 
     #resize 안에 param에 0 = false , 1 = true로 지정 가능
     # (상하, 좌우)를 의미한다.
@@ -88,7 +88,7 @@ if __name__ == "__main__":
         userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36'
         finalResult = ""
         for i in range(0, len(product_list)):
-            finalResult = finalResult + nheelProj(userAgent, product_list[i][0], product_list[i][1],int(product_list[i][2].replace(',', ''))) + '\n'
+            finalResult = finalResult + nheelProj(userAgent, product_list[i][0], product_list[i][1],int(product_list[i][2].replace(',', '')))
 
 
         resultText.configure(text=finalResult)
@@ -102,7 +102,7 @@ if __name__ == "__main__":
 
 
     #위젯 이름을 사용하여 label 사용 가능
-    label = tkinter.Label(window, text = "알지의 쿠팡 크롤링")
+    label = tkinter.Label(window, text="알지의 쿠팡 크롤링")
     label.pack()
     #label 끝
 
@@ -118,9 +118,16 @@ if __name__ == "__main__":
     #Button 끝
 
     #result 시작
-    resultText = tkinter.Label(window, height=10)
-    resultText.pack()
+    resultText = Listbox(window, width=500, height=20, font=('helvetica', 12))
+    resultText.pack(side='left', fill='y')
     #result 끝
+
+    #scollbar 시작
+    scrollbar = Scrollbar(window, orient='vertical')
+    scrollbar.configure(command=resultText.yview)
+    scrollbar.pack(side='right', fill='y')
+
+    resultText.configure(yscrollcommand=scrollbar.set)
 
 
     # 윈도우가 종료될 때까지 창 실행
