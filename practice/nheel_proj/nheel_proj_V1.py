@@ -90,9 +90,9 @@ if __name__ == "__main__":
         for i in range(0, len(product_list)):
             finalResult = finalResult + nheelProj(userAgent, product_list[i][0], product_list[i][1],int(product_list[i][2].replace(',', ''))) + '\n'
 
-        print("nheel proj V0 by stuoy")
-        print("알지에게 도움이 되었길 바라며!")
+
         resultText.configure(text=finalResult)
+        tkinter.messagebox.showinfo(title='종료알림창', message='크롤링이 종료되었습니다.')
         # product = beforProduct.split('\t')
         # print(product)
         # product_list.append(product)
