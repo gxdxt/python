@@ -88,10 +88,10 @@ if __name__ == "__main__":
         userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36'
         finalResult = ""
         for i in range(0, len(product_list)):
-            finalResult = finalResult + nheelProj(userAgent, product_list[i][0], product_list[i][1],int(product_list[i][2].replace(',', '')))+'\n'
+            finalResult = nheelProj(userAgent, product_list[i][0], product_list[i][1],int(product_list[i][2].replace(',', '')))+'\n'
+            resultText.insert(END, finalResult)
 
-
-        resultText.insert(END, finalResult)
+        # resultText.insert(END, finalResult)
         tkinter.messagebox.showinfo(title='종료알림창', message='크롤링이 종료되었습니다.')
         # product = beforProduct.split('\t')
         # print(product)
