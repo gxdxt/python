@@ -91,14 +91,7 @@ if __name__ == "__main__":
             finalResult = nheelProj(userAgent, product_list[i][0], product_list[i][1],int(product_list[i][2].replace(',', '')))+'\n'
             resultText.insert(END, finalResult)
 
-        # resultText.insert(END, finalResult)
-        tkinter.messagebox.showinfo(title='종료알림창', message='크롤링이 종료되었습니다.')
-        # product = beforProduct.split('\t')
-        # print(product)
-        # product_list.append(product)
-        # print(product_list)
-
-        #print(result)
+        tkinter.messagebox.showinfo(title='종료알림창', message='짠! 크롤링이 종료되었습니다.')
 
 
     #위젯 이름을 사용하여 label 사용 가능
@@ -132,22 +125,3 @@ if __name__ == "__main__":
 
     # 윈도우가 종료될 때까지 창 실행
     window.mainloop()
-
-
-
-    a = input('Headers를 입력해주세요 : ')
-    product_list = []
-    product = []
-    while True:
-        product = input().split('\t')
-        if product == ['exit']:
-            break
-        else:
-            product_list.append(product)
-
-
-
-    for i in range(0, len(product_list)):
-        nheelProj(defineHeaders(a), product_list[i][0], product_list[i][1], int(product_list[i][2].replace(',', '')))
-    print("nheel proj V0 by stuoy")
-    print("알지에게 도움이 되었길 바라며!")
