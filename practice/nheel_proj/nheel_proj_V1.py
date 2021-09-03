@@ -92,6 +92,9 @@ if __name__ == "__main__":
             resultText.insert(END, finalResult)
 
         tkinter.messagebox.showinfo(title='종료알림창', message='짠! 크롤링이 종료되었습니다.')
+        tkinter.messagebox.showinfo(title='종료알림창', message='알지에게 도움이 되길 바라며!')
+
+
 
 
     #위젯 이름을 사용하여 label 사용 가능
