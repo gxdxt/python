@@ -64,7 +64,7 @@ if __name__ == "__main__":
     # 가장 상위 레벨의 윈도우 창 생성
     window = tkinter.Tk()
 
-    window.title("nheel_proj_V0")
+    window.title("nheel_proj_V1")
     window.geometry("640x600+100+100")
 
     #resize 안에 param에 0 = false , 1 = true로 지정 가능
