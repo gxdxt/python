@@ -98,7 +98,7 @@ if __name__ == "__main__":
 
 
     #위젯 이름을 사용하여 label 사용 가능
-    label = tkinter.Label(window, text="알지의 쿠팡 크롤링")
+    label = tkinter.Label(window, text="RG's COUPANG Crawling")
     label.pack()
     #label 끝
 
@@ -114,7 +114,7 @@ if __name__ == "__main__":
     #Button 끝
 
     #result 시작
-    resultText = Listbox(window, width=500, height=20, font=('helvetica', 12))
+    resultText = Listbox(window, width=300, height=20, font=('helvetica', 12))
     resultText.pack(side='left', fill='y')
     #result 끝
 
