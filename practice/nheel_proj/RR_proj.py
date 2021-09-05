@@ -27,7 +27,8 @@ if GameType == 1 or GameType == '':
     # 랜덤으로 총알을 장전합니다.
     target = random.randint(0, 5)
     print('장전을 완료하였습니다.')
-    
+    # 실린더를 돌립니다.
+    # 어떻게 돌릴지 고민!!!
 
 
 
