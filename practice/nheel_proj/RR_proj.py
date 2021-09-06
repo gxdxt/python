@@ -22,6 +22,7 @@ if GameType != 1 or GameType != 2 :
   gameType = input('원하시는 Game type을 입력해주세요. : (기본값 = 1)')
 
 if GameType == 1 or GameType == '':
+    print('첫 번째 인원, ' + Participants[0] + '의 차례입니다.')
     print('실린더를 한 번만 돌리게 됩니다.')
     print('장전을 시작합니다.')
     # 랜덤으로 총알을 장전합니다.
@@ -29,6 +30,13 @@ if GameType == 1 or GameType == '':
     print('장전을 완료하였습니다.')
     # 실린더를 돌립니다.
     # 어떻게 돌릴지 고민!!!
+    # 일단 처음에는 랜덤으로 숫자 선택
+    pick = random.randint(0, 5)
+    if target == pick:
+        print("BANG!")
+    else :
+        print("puf,,")
+
 
 
 
