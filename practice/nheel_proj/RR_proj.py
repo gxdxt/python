@@ -7,9 +7,10 @@ Participant = ""
 Participants = []
 GameType = 1
 Cylinder = []
-while Participant == "end" :
+while Participant != "end" :
     Participant = input('참가자의 이름을 입력해 주세요 : ')
     Participants.append(Participant)
+
 
 # Game type에 대한 설명
 print('Game type에 대한 설명.')
