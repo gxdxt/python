@@ -9,3 +9,24 @@ node2 = Node(2)
 
 # 이 둘을 잇기 위해서는 next를 추가하면 된다.
 node1.next = node2
+head = node1 # Linked List의 첫 번째 노드 선언
+
+
+# 노드 추가 함수
+def add(data):
+    node = head
+    while node.next:
+        node = node.next
+    node.next = Node(data)
+
+for index in range(2, 10):
+    add(index)
+
+node1 = Node(1)
+node = head
+while node.next:
+    print(node.data)
+    node = node.next
+print(node.data)
+
+
