@@ -29,4 +29,20 @@ while node.next:
     node = node.next
 print(node.data)
 
+node3 = Node(1.5)
+node = head
+search = True
+while search:
+    if node.data == 1:
+        search = False
+    else :
+        node = node.next
+node3.next = node.next
+node.next = node3
+while node.next:
+    print(node.data)
+    node = node.next
+print(node.data)
+
+
 
