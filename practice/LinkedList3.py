@@ -3,4 +3,18 @@ class Node:
         self.prev = prev
         self.data = data
         self.next = next
+class NodeMgmt:
+    def __init__(self, data):
+        self.head = Node(data)
+        self.tail = self.head
+
+    def insert(self, data):
+        if self.head == None:
+            self.head = Node(data)
+            self.tail = self.head
+        else:
+            node = self.head
+            while node.next:
+                node = node.next
+                
 
