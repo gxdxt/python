@@ -19,5 +19,17 @@ class NodeMgmt:
             node = self.head
             while node.next:
                 node = node.next
+            new = Node(data)
+            node.next = new
+            new.prev = node
+            # 노드들 중 마지막이 tail !
+            self.tail = new
+
+    def desc(self):
+        node = self.head
+        while node:
+            print(node.data)
+            node = node.next
+            
 
 
