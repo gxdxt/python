@@ -30,6 +30,18 @@ class NodeMgmt:
         while node:
             print(node.data)
             node = node.next
-            
+
+    def search_from_head(self, data):
+        if self.node == None:
+            return False
+        
+        node = self.head
+        while node:
+            if node.data == data:
+                return node
+            else:
+                node = node.next
+        return False
+
 
 
