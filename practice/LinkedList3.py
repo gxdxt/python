@@ -1,11 +1,14 @@
 class Node:
+    # def의 self의 의미?
     def __init__(self, data, prev=None, next=None):
         self.prev = prev
         self.data = data
         self.next = next
+
 class NodeMgmt:
     def __init__(self, data):
         self.head = Node(data)
+        # head랑 tail이랑 같은 이유?
         self.tail = self.head
 
     def insert(self, data):
@@ -16,5 +19,5 @@ class NodeMgmt:
             node = self.head
             while node.next:
                 node = node.next
-                
+
 
