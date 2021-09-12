@@ -34,7 +34,7 @@ class NodeMgmt:
     def search_from_head(self, data):
         if self.node == None:
             return False
-        
+
         node = self.head
         while node:
             if node.data == data:
@@ -43,5 +43,16 @@ class NodeMgmt:
                 node = node.next
         return False
 
+    def search_from_tail(self, data):
+        if self.node == None:
+            return False
+
+        node = self.tail
+        while node:
+            if node.data == data:
+                return node
+            else:
+                node = node.prev
+        return False
 
 
