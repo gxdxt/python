@@ -55,4 +55,30 @@ class NodeMgmt:
                 node = node.prev
         return False
 
+    def insert_before(self, before_data, data):
+        if self.head == None:
+            self.node = Node(data)
+            return True
+        else:
+            node = self.tail
+            while node.data != before_data:
+                node = node.prev
+                if node == None:
+                    return False
+            # 새로운 노드 생성
+            new = Node(data)
+            # 이전의 앞 노드를 임시 변수에 저장
+            before_new = node.prev
+            before_new.next = new
+            new.prev = before_new
+            new.next = node
+            node.prev = new
+        return True
+
+
+
+
+
+        # self는 아마 자신의 class를 의미하는 듯 하다.
+
 
