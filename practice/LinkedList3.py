@@ -75,6 +75,24 @@ class NodeMgmt:
             node.prev = new
             return True
 
+    def insert_after(self, after_data, data):
+        if self.head == None:
+            self.node = Node(data)
+            return True
+        else:
+            node = self.tail
+            while node.data != after_data:
+                node = node.prev
+                if node == None:
+                    return False
+            new = Node(data)
+            after_new = node.next
+            after_new.prev = new
+            new.prev = node
+            new.next = after_new
+            node.next = new
+            return True
+
 
 
 
