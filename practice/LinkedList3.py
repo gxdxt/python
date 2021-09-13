@@ -73,7 +73,7 @@ class NodeMgmt:
             new.prev = before_new
             new.next = node
             node.prev = new
-        return True
+            return True
 
 
 
