@@ -16,4 +16,8 @@ def storage_data(data, value):
     key = ord(data[0])
     hash_address = hash_func(key)
     hash_table[hash_address] = data
-    
+
+def get_data(data):
+    key = ord(data[0])
+    hash_address = hash_func(key)
+    return hash_table[hash_address]
