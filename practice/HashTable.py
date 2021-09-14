@@ -11,3 +11,9 @@ data1 = 'James'
 data2 = 'Dave'
 data3 = 'Trump'
 print(ord(data1[0]), ord(data2[0]), ord(data3[0]))
+
+def storage_data(data, value):
+    key = ord(data[0])
+    hash_address = hash_func(key)
+    hash_table[hash_address] = data
+    
