@@ -21,4 +21,17 @@ class NodeMgnt:
         # 아마 최초의 시작에는 노드가 한 개뿐이니까, 그게 곧 머리이자 꼬리인 것.
         self.tail = self.head
 
+    def insert(self, data):
+        if self.head == None:
+            self.head = Node(data)
+            self.tail = self.head
+        else:
+            node = self.head
+            while node.next:
+                node = node.next
+            new = Node(data)
+            node.next = new
+            new.prev = node
+            self.tail = new
+
 
