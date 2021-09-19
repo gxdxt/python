@@ -22,11 +22,14 @@ class NodeMgnt:
         self.tail = self.head
 
     def insert(self, data):
+        # 해당 노드에 아무 데이터가 존재하지 않을 때 방어코드
         if self.head == None:
             self.head = Node(data)
             self.tail = self.head
         else:
             node = self.head
+            # 마지막 노드까지 넘어가기
+            # tail을 바로 찾으면 안되나?
             while node.next:
                 node = node.next
             new = Node(data)
@@ -34,4 +37,9 @@ class NodeMgnt:
             new.prev = node
             self.tail = new
 
+    def desc(self):
+        node = self.head
+        while node:
+            print(node.data)
+            node = node.next
 
