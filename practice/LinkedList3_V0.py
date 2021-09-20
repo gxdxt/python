@@ -43,3 +43,11 @@ class NodeMgnt:
             print(node.data)
             node = node.next
 
+    def search_from_head(self, data):
+        if node.head == None:
+            return False
+
+        node = self.head
+        if node.data == data:
+
+
