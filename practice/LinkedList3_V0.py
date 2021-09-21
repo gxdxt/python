@@ -49,5 +49,7 @@ class NodeMgnt:
 
         node = self.head
         if node.data == data:
-
+            return node
+        else:
+            node = node.next
 
