@@ -97,4 +97,39 @@ class NodeMgnt:
             return True
 
     def insert_after(self, target, data):
+        # 해당 노드 덩어리에 데이터 자가 있는지 확인
+        if self.tail == None:
+            self.node = Node(data)
+            return True
+
+
+        node = self.tail
+        # 해당 타겟 데이터가 노드 덩어리에 존재하는 지 확인
+        while node.data != target:
+            node = node.prev
+            if node == None:
+                print("해당 target 데이터가 존재하지 않습니다.")
+                return False
+        # 타겟 데이터를 찾아서 계속 오다가, 만나면 여기로 빠진다.
+
+
+        # 데이터를 담은 노드 생성
+        new = Node(data)
+
+        # 기존의 next 데이터를 임시 변수에 담는다.
+        temp = node.next
+
+        # 새로운 데이터를 현재 노드의 next로 저장한다.
+        node.next = new
+
+        # 새로운 데이터를 기존의 next 데이터의 prev로 저장한다.
+        temp.prev = new
+
+        # 새로운 데이터의 prev를 현재 노드로 저장한다.
+        new.prev = node
+
+        # 새로운 데이터의 next를 기존의 next 데이터로 저장한다.
+        new.next = temp
+
+        return True
 
