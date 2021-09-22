@@ -75,8 +75,8 @@ class NodeMgnt:
                 # while에 조건문이 참이면 들어온다.
                 node = node.next
                 if node == None:
-                    # 끝까지 돌았는데, 해당 타겟 값이 없으면 return False
-                return False
+                    # 끝까지 돌았는데 데이터가 없으면 False를 return
+                    return False
             # data를 담은 새로운 노드 생성
             new = Node(data)
 
