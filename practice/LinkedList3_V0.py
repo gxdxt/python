@@ -72,9 +72,19 @@ class NodeMgnt:
 
             node = self.head
             while node.data != target:
-                node = node.prev
-
-
+                # while에 조건문이 참이면 들어온다.
+                node = node.next
+                if node == None:
+                    # 끝까지 돌았는데, 해당 타겟 값이 없으면 return False
+                return False
+            # data를 담은 새로운 노드 생성
+            new = Node(data)
+            temp = node.prev
+            node.prev = new
+            temp.next = new
+            new.prev = temp
+            new.next = node
+            return True
 
     def insert_after(self, target, data):
 
