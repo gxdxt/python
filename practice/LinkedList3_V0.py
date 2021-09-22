@@ -79,10 +79,20 @@ class NodeMgnt:
                 return False
             # data를 담은 새로운 노드 생성
             new = Node(data)
+
+            # Insert 전의 현재 노드 전 데이터를 임시 변수에 저장
             temp = node.prev
+
+            # 현재 노드 전 데이터를 삽입하려는 데이터로 변경
             node.prev = new
+
+            # 기존 'prev' 데이터의 다음 데이터를 삽입하려는 데이터로 변경
             temp.next = new
+
+            # 삽입하려는 데이터의 'prev' 데이터를 임시 저장한 이전의 데이터로 저장
             new.prev = temp
+
+            # 삽입하려는 데이터의 'next' 데이터를 현재 노드 데이터로 저장
             new.next = node
             return True
 
