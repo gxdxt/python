@@ -44,7 +44,7 @@ class NodeMgnt:
             node = node.next
 
     def search_from_head(self, data):
-        if node.head == None:
+        if self.head == None:
             return False
 
         node = self.head
@@ -52,4 +52,19 @@ class NodeMgnt:
             return node
         else:
             node = node.next
+
+    def search_from_tail(self, data):
+        if self.node == None:
+            return False
+
+        node = self.tail
+        if node.data == data:
+            return node
+        else:
+            node = node.prev
+
+    def insert_before(self, data):
+        
+
+    def insert_after(self, data):
 
