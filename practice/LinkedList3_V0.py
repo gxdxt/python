@@ -63,8 +63,18 @@ class NodeMgnt:
         else:
             node = node.prev
 
-    def insert_before(self, data):
-        
+    def insert_before(self, target, data):
+        if self.head == None:
+            self.node = Node(data)
+            return True
+        # 여기서 return Node(data)해도 되려나?
+        else:
 
-    def insert_after(self, data):
+            node = self.head
+            while node.data != target:
+                node = node.prev
+
+
+
+    def insert_after(self, target, data):
 
