@@ -15,6 +15,7 @@ while Participant != "end" :
 # Game type에 대한 설명
 print('Game type에 대한 설명.')
 print('1번 게임 타입: 실린더를 최초 1회만 돌리는 경우(6 차례 내로 게임이 종료됩니다.)')
+# 시간 타임아웃 걸자
 print('2번 게임 타입: 실린더를 매 차례마다 돌리는 경우(게임이 오랫동안 지속될 수 있습니다.)')
 # 입력된 input의 length를 확인하여 게임에 참여하는 인원을 가늠한다.
 GameType = input('원하시는 Game type을 입력해주세요. : (기본값 = 1)')
@@ -36,7 +37,7 @@ if GameType == 1 or GameType == '':
             # 일단 처음에는 랜덤으로 숫자 선택
             reload = input('엔터를 누르면, 장전을 합니다.')
             if reload == '\n' :
-            pick = random.randint(0, 5)
+                pick = random.randint(0, 5)
             if target == pick:
                 print("BANG!")
                 print(Participants[index] + '님이 사망하셨습니다.')
