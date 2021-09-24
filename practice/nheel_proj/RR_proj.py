@@ -1,5 +1,10 @@
 import random
+import threading
 
+
+def startTimer():
+    timer = threading.Timer(5, startTimer)
+    timer.start()
 # 사용자는 최소 2명 이상
 # input으로 사용자 이름을 정의한다.
 
