@@ -31,7 +31,9 @@ if GameType != 1 or GameType != 2 :
 if GameType == 1 or GameType == '':
     for index in range(len(Participants)):
         print(Participants[index] + '의 차례입니다.')
+        startTimer()
         print('실린더를 한 번만 돌리게 됩니다.')
+        startTimer()
         spin = input('엔터를 누르면, 실린더를 돌립니다.')
         if spin == '\n' :
             # 랜덤으로 총알을 장전합니다.
