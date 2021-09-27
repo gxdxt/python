@@ -8,3 +8,13 @@
 # leaf node:
 # sibling (brother node):
 # depth:
+
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+class NodeMgmt:
+    def __init__(self, head):
+        self.head = head
