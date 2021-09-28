@@ -27,3 +27,8 @@ class NodeMgmt:
                     self.current_node = self.current_node.left
                 else:
                     self.current_node.left = Node(value)
+            else:
+                if self.current_node.right != None:
+                    self.current_node = self.current_node.right
+                else:
+                    self.current_node.right = Node(value)
