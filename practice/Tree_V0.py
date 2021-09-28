@@ -32,3 +32,18 @@ class NodeMgmt:
                     self.current_node = self.current_node.right
                 else:
                     self.current_node.right = Node(value)
+
+    def delete(self, value):
+        self.current_node = self.head
+        while self.current_node:
+            # 삭제하는 노드가 leaf node일 경우
+
+            # 삭제하는 노드가 1개의 child node를 가지고 있을 경우
+
+            # 삭제하는 노드가 2개의 child nodes를 가지고 있을 경우
+
+                # 삭제하는 노드의 left child node의 맨 우측 leaf node로 대체하는 경우
+                    # 대체하려는 node가 right child node를 가진 경우
+
+                # 삭제하는 노드의 right child node의 맨 좌측 leaf node로 대체하는 경우우
+                    # 대체하려는 node가 left child node를 가진 경우
