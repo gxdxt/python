@@ -50,7 +50,7 @@ class NodeMgmt:
             self.current_node.value = None
 
         # 삭제하는 노드가 1개의 child node를 가지고 있을 경우
-        elif self.current_node.left == None or self.current_node.rigth == None:
+        elif self.current_node.left == None or self.current_node.right == None:
             # 해당 child node로 대체
             if self.current_node.left != None:
                 replaceNode = self.current_node.left
@@ -60,12 +60,16 @@ class NodeMgmt:
                 self.curent_node.value = replaceNode.value
 
         # 삭제하는 노드가 2개의 child nodes를 가지고 있을 경우
-        else:
+        elif self.current_node.left != None and self.current_node.right != None:
                 # 삭제하는 노드의 left child node의 맨 우측 leaf node로 대체하는 경우
-                
+                replaceNode = self.current_node.left
+                if replaceNode.right != None:
+                    replaceNode = replaceNode.right
                         # 대체하려는 node가 right child node를 가진 경우
                             # right child node를 대체한 node 자리로 이동
 
-                    # 삭제하는 노드의 right child node의 맨 좌측 leaf node로 대체하는 경우우
+                # 삭제하는 노드의 right child node의 맨 좌측 leaf node로 대체하는 경우우
+                if replaceNode.left != None:
+                    replaceNode = replaceNode.left
                         # 대체하려는 node가 left child node를 가진 경우
                             # left child node를 대체한 node 자리로 이동
