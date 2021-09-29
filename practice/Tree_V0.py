@@ -34,13 +34,32 @@ class NodeMgmt:
                     self.current_node.right = Node(value)
 
     def delete(self, value):
+        # 해당 노드를 찾았는지 여부 Flag
+        searched = False
         self.current_node = self.head
+        # 삭제 작업은 항상 parent node도 수정해줘야 하기에 선언
+        self.parent = self.head
+
+        while self.current_node:
+            if self.current_node.value == value:
+                searched = True
+                break
+            elif value < self.current_node.value:
+                self.parent = self.current_node
+                self.current_node = self.current_node.left
+            else:
+                self.parent = self.current_node
+                self.current_node = self.current_node.right
+
+
+
         while value != self.current_node.value:
             # 해당 value가 있는 current_node로 이동
             if value < self.current_node.value:
                 self.current_node = self.current_node.left
             else:
                 self.current_node = self.current_node.right
+        # 전부 조회했는데 해당 Value에 대한 Node가 없는 경우
 
         # While 문에서 벗어나면 해당 value가 current_node인 상태
 
