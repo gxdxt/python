@@ -51,6 +51,8 @@ class NodeMgmt:
                 self.parent = self.current_node
                 self.current_node = self.current_node.right
 
+        if searched == False:
+            return False
 
 
         while value != self.current_node.value:
