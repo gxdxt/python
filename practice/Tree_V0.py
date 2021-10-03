@@ -56,6 +56,9 @@ class NodeMgmt:
 
         ## 여기부터 return되지 않았을 경우에 case를 나눠서 실행
 
+        # Case 1 : Node가 Leaf Node일 경우,
+        
+
 
         while value != self.current_node.value:
             # 해당 value가 있는 current_node로 이동
