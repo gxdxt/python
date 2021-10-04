@@ -57,7 +57,18 @@ class NodeMgmt:
         ## 여기부터 return되지 않았을 경우에 case를 나눠서 실행
 
         # Case 1 : Node가 Leaf Node일 경우,
-
+        # 먼저 leaf node인지 판단,
+        if self.current_node.left == None and self.current_node.right == None:
+            # 삭제해야할 Node가 left인지, right인지도 판단해야한다. -> parent의 left를 None으로 만들 것인지, right를 None으로 만들 것인지 정해야 한다.
+            if value < self.parent.vale:
+                # 작을 경우는 left
+                self.parent.left = None;
+            else:
+                # 클 경우는 right
+                self.parent.right = None;
+                # Memory 상에서도 삭제
+                del self.current_node
+            
 
 
 
