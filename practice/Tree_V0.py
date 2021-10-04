@@ -57,9 +57,12 @@ class NodeMgmt:
         ## 여기부터 return되지 않았을 경우에 case를 나눠서 실행
 
         # Case 1 : Node가 Leaf Node일 경우,
-        
 
 
+
+
+#---------------------------------------------------잘못 작성한 코드
+        """
         while value != self.current_node.value:
             # 해당 value가 있는 current_node로 이동
             if value < self.current_node.value:
@@ -99,3 +102,4 @@ class NodeMgmt:
                     replaceNode = replaceNode.left
                         # 대체하려는 node가 left child node를 가진 경우
                             # left child node를 대체한 node 자리로 이동
+                            """
