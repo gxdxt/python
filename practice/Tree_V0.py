@@ -66,9 +66,9 @@ class NodeMgmt:
             else:
                 # 클 경우는 right
                 self.parent.right = None;
-                # Memory 상에서도 삭제
-                del self.current_node
-            
+            # Memory 상에서도 삭제
+            del self.current_node
+
 
 
 
