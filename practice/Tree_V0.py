@@ -70,7 +70,7 @@ class NodeMgmt:
             del self.current_node
 
         # Case 2 : Node to be deleted가 1개의 Child Node를 가진 경우
-            # 1. 해당 child node를 삭제하는 node에 위치시켜야 한다.
+            # 해당 child node를 삭제하는 node에 위치시켜야 한다.
 
         # Case 2 - 1 : The Child Node가 right 일 경우
         if self.current_node.left == None and self.current_node.right != None:
@@ -88,6 +88,37 @@ class NodeMgmt:
                 self.parent.left = self.current_node.left
             else:
                 self.parent.right = self.current_node.left
+
+        # Case 3 : Node to be deleted가 2개의 Child Nodes를 가진 경우
+        if self.current_node.left != None and self.current_node.right != None:
+
+            # Case 3 - 1 - 1: Node to be deleted 가 Parent Node의 left에 있고,
+            if value < self.parent.value:
+                self.changed_node = self.current_node.right
+                self.changed_parent_node = self.current_node.right
+                # child node가 가장 작은 node가 아닐 때
+                while self.changed_node:
+                    self.changed_parent_node = self.changed_node
+                    self.changed_node = self.changed_node.left
+                if self.changed_node.right != None:
+                    self.changed_parent_node.left = self.changed_node.right
+                else:
+                    self.changed_parent_node.left = None
+                self.parent.left = self.changed_node
+                self.changed_node.right = self.current_node.right
+                self.changed_node.left = self.current_node.left
+
+                # child node가 가장 작은 node일 때
+
+            # Case 3 - 2 - 1 : Node to be deleted 가 Parent Node의 right에 있고,
+
+                # child node가 가장 작은 node일 때
+
+
+                # child node가 가장 작은 node가 아닐 때
+
+
+
 
 
 
