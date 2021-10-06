@@ -74,14 +74,23 @@ class NodeMgmt:
 
         # Case 2 - 1 : The Child Node가 right 일 경우
         if self.current_node.left == None and self.current_node.right != None:
-            changed_node = self.current_node.right
-            # parent의 left인지, right인지 판단은 안해도 돼?
-            self.parent.right = changed_node
-
-
+            # parent의 left인지, right인지 판단은 안해도 돼? >> 해야 돼
+            if value < self.parent.value: # parent의 left일 경우,
+                #changed_node = self.current_node.right
+                #self.parent.left = changed_node
+                self.parent.left = self.current_node.right
+            else:
+                self.parent.right = self.current_node.right
 
         # Case 2 - 2 : The Child Node가 left 일 경우
-        if self.current_node.left != None and self.current_node.left == None:
+        elif self.current_node.left != None and self.current_node.left == None:
+            if value < self.parent.value:
+                self.parent.left = self.current_node.left
+            else:
+                self.parent.right = self.current_node.left
+
+
+
 
 
 
