@@ -1,3 +1,4 @@
+import random
 # tree : node와 branch로 이루어진 데이터 구조
 
 # node:
@@ -130,7 +131,10 @@ class NodeMgmt:
 
                 # child node가 가장 작은 node가 아닐 때
 
-
+bst_nums = set() # 중복값을 빼기 위해 set으로 설정
+while len(bst_nums) != 100:
+    bst_nums.add(random.randint(0, 999))
+print(bst_nums)
 
 
 
