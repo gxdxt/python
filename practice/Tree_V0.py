@@ -96,7 +96,26 @@ class NodeMgmt:
             if value < self.parent.value:
                 self.changed_node = self.current_node.right
                 self.changed_parent_node = self.current_node.right
-                # child node가 가장 작은 node가 아닐 때
+                # child node가 가장 큰 node가 아닐 때큰
+                while self.changed_node:
+                    self.changed_parent_node = self.changed_node
+                    self.changed_node = self.changed_node.right
+                if self.changed_node.left != None:
+                    self.changed_parent_node.right = self.changed_node.left
+                else:
+                    self.changed_parent_node.right = None
+                self.parent.left = self.changed_node
+                self.changed_node.right = self.current_node.right
+                self.changed_node.left = self.current_node.left
+
+                # child node가 가장 큰 node일 때
+
+            # Case 3 - 2 - 1 : Node to be deleted 가 Parent Node의 right에 있고,
+            else :
+                self.changed_node = self.current_node.left
+                self.changed_parent_node = self.current_node.left
+
+                # child node가 가장 작은 node일 때
                 while self.changed_node:
                     self.changed_parent_node = self.changed_node
                     self.changed_node = self.changed_node.left
@@ -104,15 +123,9 @@ class NodeMgmt:
                     self.changed_parent_node.left = self.changed_node.right
                 else:
                     self.changed_parent_node.left = None
-                self.parent.left = self.changed_node
+                self.parent.right = self.changed_node
                 self.changed_node.right = self.current_node.right
                 self.changed_node.left = self.current_node.left
-
-                # child node가 가장 작은 node일 때
-
-            # Case 3 - 2 - 1 : Node to be deleted 가 Parent Node의 right에 있고,
-
-                # child node가 가장 작은 node일 때
 
 
                 # child node가 가장 작은 node가 아닐 때
