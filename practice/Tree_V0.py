@@ -69,6 +69,22 @@ class NodeMgmt:
             # Memory 상에서도 삭제
             del self.current_node
 
+        # Case 2 : Node to be deleted가 1개의 Child Node를 가진 경우
+            # 1. 해당 child node를 삭제하는 node에 위치시켜야 한다.
+
+        # Case 2 - 1 : The Child Node가 right 일 경우
+        if self.current_node.left == None and self.current_node.right != None:
+            changed_node = self.current_node.right
+            # parent의 left인지, right인지 판단은 안해도 돼?
+            self.parent.right = changed_node
+
+
+
+        # Case 2 - 2 : The Child Node가 left 일 경우
+        if self.current_node.left != None and self.current_node.left == None:
+
+
+
 
 
 
