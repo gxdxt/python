@@ -54,10 +54,82 @@ class Heap:
 
         return True
 
+    def move_down(self, poped_idx):
+        left_idx = poped_idx * 2
+        right_idx = poped_idx * 2 + 1
+        # 0. 자식 노드가 없는 경우 -> 그냥 끝
+        if left_idx >= len(self.heap_array):
+            return False
+
+        # 1. 자식 노드가 왼쪽만 있는 경우
+        elif right_idx >= len(self.heap_array):
+            # 왼쪽 자식 노드가 더 클 때, 해야할 일이 있다 > return True
+            if self.heap_array[poped_idx] < self.heap_array[left_idx]:
+                return True
+            else:
+                return False
+        # 2. 자식 노드가 둘 다 있는 경우
+        else:
+            # 2 - 1. 자식 노드끼리 크기 비교
+            if self.heap_array[left_idx] > self.heap_array[right_idx]:
+                if self.heap_array[poped_idx] < self.heap_array[left_idx]:
+                    return True
+                else:
+                    return False
+            else:
+                if self.heap_array[poped_idx] < self.heap_array[right_idx]:
+                    return True
+                else:
+                    return False
+
+    # Heap에서는 중간에 끼인 값을 삭제하는 경우는 없다.
+    def pop(self):
+        # 방어코드
+        if len(self.heap_array) <= 1:
+            return None
+
+        returned_data = self.heap_array[1]
+        # -1은 항상 마지막 데이터
+        self.heap_array[1] = self.heap_array[-1]
+        # 맨 끝 데이터 삭제
+        del self.heap_array[-1]
+        poped_idx = 1
+
+        while self.move_down(poped_idx):
+            left_idx = poped_idx * 2
+            right_idx = poped_idx * 2 + 1
+
+            if left_idx >= len(self.heap_array):
+                return False
+
+            # 1. 자식 노드가 왼쪽만 있는 경우
+            elif right_idx >= len(self.heap_array):
+                # 왼쪽 자식 노드가 더 클 때, 해야할 일이 있다 > return True
+                if self.heap_array[poped_idx] < self.heap_array[left_idx]:
+                    self.heap_array[poped_idx], self.heap_array[left_idx] = self.heap_array[left_idx], self.heap_array[poped_idx]
+                    poped_idx = left_idx
+
+            # 2. 자식 노드가 둘 다 있는 경우
+            else:
+                # 2 - 1. 자식 노드끼리 크기 비교
+                if self.heap_array[left_idx] > self.heap_array[right_idx]:
+                    if self.heap_array[poped_idx] < self.heap_array[left_idx]:
+                        self.heap_array[poped_idx], self.heap_array[left_idx] = self.heap_array[left_idx], self.heap_array[poped_idx]
+                        poped_idx = left_idx
+                else:
+                    if self.heap_array[poped_idx] < self.heap_array[right_idx]:
+                        self.heap_array[poped_idx], self.heap_array[right_idx] = self.heap_array[right_idx], self.heap_array[poped_idx]
+                        poped_idx = right_idx
+
+
+        return returned_data
+
 heap = Heap(15)
 heap.insert(10)
 heap.insert(8)
 heap.insert(5)
 heap.insert(4)
 heap.insert(20)
+print(heap.heap_array)
+print(heap.pop())
 print(heap.heap_array)
