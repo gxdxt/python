@@ -19,6 +19,10 @@ class Heap:
         self.heap_array.append(None)
         self.heap_array.append(data)
 
+    # 삽입하는 데이터의 크기를 이전 노드와 비교하여 위치를 변경해야하는 지 확인하는 함수 >> True이면 위치 변경
+    def move_up(self, inserted_idx):
+
+
     def insert(self, data):
         if len(self.heap_array) == 0:
             self.heap_array.append(None)
@@ -26,5 +30,16 @@ class Heap:
             return True
 
         self.heap_array.append(data)
+        # 삽입하는 데이터가 루트 노드가 아닐 경우, 데이터 위치 변경의 코드들이 필요하다.
+            
+
+        # 지금 들어가는 데이터의 index 번호를 알아야 한다.
+        inserted_idx = len(self.heap_array) - 1
+        while self.move_up(inserted_idx):
+            # 부모 노드의 idx 뽑기
+            parent_idx = inserted_idx // 2 # /면 소수점까지 모두 나오고, //하면 몫 자연수만 나온다.
+            # 두 자리를 변경한다.
+            self.heap_array[inserted_idx], self.heap_array[parent_idx] = self.heap_array[parent_idx], self.heap_array[inserted_idx] # swap
+
         return True
 
