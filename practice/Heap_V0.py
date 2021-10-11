@@ -133,3 +133,6 @@ heap.insert(20)
 print(heap.heap_array)
 print(heap.pop())
 print(heap.heap_array)
+
+# Heap의 시간 복잡도는 최악의 상황에서 root -> leaf까지 탐색해야 한다. 그 후 삽입 혹은 삭제 할텐데,
+# 이 때, 그 시간은 해당 힙의 depth만큼, 즉 log2 n 만큼 소요된다! O(log n)
