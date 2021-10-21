@@ -1,4 +1,5 @@
 def dfs(graph, start_node):
+    # 트리 형태의 그래프일 경우 단순히 리스트로 줄 세우기가 가능.
     visited, need_visit = list(), list()
     need_visit.append(start_node)
 
