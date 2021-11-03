@@ -54,3 +54,38 @@ mygraph = {
 }
 
 print(dijkstra(mygraph, 'A'))
+
+# 최단 거리의 모습을 출력하는 다익스트라도 참고
+
+def dijkstra2(graph, start, end):
+    distances = {vertex: [float('inf'), start] for vertex in graph}
+
+    distances[start] = [0, start]
+
+    queue = 0
+
+    heapq.heappush(queue, [distances[start], start])
+
+    while queue:
+        current_distance, current_vertex = heapq.heappop(queue)
+
+        if distances[current_vertex] < current_distance:
+            continue
+
+        for adjacent, weight in graph[current_vertex].items():
+            distance = distances[current_vertex][0] + weight
+
+            if distance < distances[adjacent][0]:
+                distances[adjacent] = [distance, current_vertex]
+                heapq.heappush(queue, [distance, adjacent])
+
+    path = end
+    path_output = end + '->'
+    while distances[path][1] != start:
+        path_output += distances[path][1] + '->'
+        path = distances[path][1]
+    path_output += start
+    print(path_output)
+    return distances
+
+
