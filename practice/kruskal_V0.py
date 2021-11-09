@@ -8,6 +8,7 @@ def find(node):
     # path compression 기법 사용 -> 중간에 있는 node들도 모두 root 노드로 붙여준다. / root node를 찾는 시간 복잡도를 낮춰준다.
     if parent[node] != node:
         # 자기 자신이 root node가 아니라면 들어온다.
+        print('node: ' + node + ', parent node: ' + parent[node])
         parent[node] = find(parent[node])
     return parent[node]
 
@@ -20,9 +21,11 @@ def union(node_v, node_u):
     # 1. 각각의 집합의 root node가 rank 값이 다를 때,
     # union by rank 기법
     if rank[root1] > rank[root2]:
+        print('root union: root2(' + root2 + ')의 부모 노드가 ' + root1 + '가 되었다.')
         # 큰 쪽을 작은 쪽으로 연결해야 한다.
         parent[root2] = root1
     else:
+        print('root union: root1('+ root1 + ')의 부모 노드가 ' + root2 + '가 되었다.' )
         parent[root1] = root2
         # 2. 각각의 집합의 root node가 rank 값이 같을 떄,
         if rank[root1] == rank[root2]:
@@ -42,8 +45,27 @@ mygraph = {
     'vertices': ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
     'edges': [
         (7, 'A', 'B'),
-        (5, 'B', 'C'),
-
+        (5, 'A', 'D'),
+        (7, 'B', 'A'),
+        (8, 'B', 'C'),
+        (9, 'B', 'D'),
+        (7, 'B', 'E'),
+        (8, 'C', 'B'),
+        (5, 'C', 'E'),
+        (5, 'D', 'A'),
+        (9, 'D', 'B'),
+        (7, 'D', 'E'),
+        (6, 'D', 'F'),
+        (7, 'E', 'B'),
+        (5, 'E', 'C'),
+        (7, 'E', 'D'),
+        (8, 'E', 'F'),
+        (9, 'E', 'G'),
+        (6, 'F', 'D'),
+        (8, 'F', 'E'),
+        (11, 'F', 'G'),
+        (9, 'G', 'E'),
+        (11, 'G', 'F')
     ]
 }
 
@@ -72,3 +94,5 @@ def kruskal(graph):
             union(node_v, node_u)
             mst.append(edge)
     return mst
+
+kruskal(mygraph)
