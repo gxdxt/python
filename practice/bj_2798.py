@@ -12,7 +12,7 @@
 
 # 합이 M을 넘지 않는 카드 3장을 찾을 수 있는 경우만 입력으로 주어진다.
 
-def blackjack(card_list):
+def blackjack(card_list, result_target):
     result = list()
 
     # list 갯수와 기준 값을 받는다.
@@ -28,11 +28,21 @@ def blackjack(card_list):
         for index2 in range(1, len(card_list)-1):
             for index3 in range(2, len(card_list)):
                 sum_three = card_list[index1] + card_list[index2] + card_list[index3]
-                result.append(sum_three)
+                if sum_three not in result:
+                    result.append(sum_three)
 
+    # sum_three 에 있는 값들 중 그 차이가 target과 가장 작은 값
+    print(result)
+    nearest = result[0]
+    for i in range(len(result)):
+        print(str(result[i]) + " : " + str(abs(result_target - result[i])))
+        if abs(result_target - result[i]) < abs(result_target - nearest):
+            nearest = result[i]
+    return nearest
     # 완전 탐색 / 모든 경우의 수를 담아야 한다.
-    for index in range(len(card_list))
 
-def solve(N, result_target):
+
+test_list = [5, 6, 7, 8, 9]
+print(blackjack(test_list, 21))
 
 
